@@ -15,10 +15,8 @@ spec:
         run: myweb
     spec:
       containers:
-      - image: harbor.yuandingit.com/cicd/$JOB_NAME:latest
+      - image: harbor.yuandingit.com/cicd/${CICD_GIT_REPO_NAME}:${CICD_EXECUTION_SEQUENCE}
         name: myweb
-      imagePullSecrets:
-      - name: $KUBERNETES_SECRET_NAME
 ---
 apiVersion: v1
 kind: Service
