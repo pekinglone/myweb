@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+bapiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
@@ -15,7 +15,7 @@ spec:
         run: myweb
     spec:
       containers:
-      - image: harbor.yuandingit.com/cicd/${CICD_GIT_REPO_NAME}:${CICD_EXECUTION_SEQUENCE}
+      - image: myweb-2:latest
         name: myweb
 ---
 apiVersion: v1
