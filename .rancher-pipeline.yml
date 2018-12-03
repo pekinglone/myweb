@@ -4,7 +4,9 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./dockerfile/Dockerfile
       buildContext: .
-      tag: myweb-1:${CICD_EXECUTION_SEQUENCE}
+      tag: myweb-1:latest
+      pushRemote: true
+      registry: harbor.yuandingit.com
     env:
       PLUGIN_DEBUG: "true"
 - name: Deploy
