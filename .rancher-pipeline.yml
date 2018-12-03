@@ -1,0 +1,14 @@
+stages:
+- name: Build
+  steps:
+  - publishImageConfig:
+      dockerfilePath: dockerfile/Dockerfile
+      buildContext: .
+      tag: harbor.yuandingit.com/${CICD_GIT_REPO_NAME}/${CICD_GIT_REPO_NAME}:${CICD_EXECUTION_SEQUENCE}
+      pushRemote: true
+      registry: harbor.yuandingit.com
+- name: Deploy
+  steps:
+  - applyYamlConfig:
+      path: yaml/k8s-myweb.yaml
+timeout: 60
