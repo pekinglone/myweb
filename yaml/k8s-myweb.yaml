@@ -15,7 +15,7 @@ spec:
         run: myweb
     spec:
       containers:
-      - image: myweb-2:latest
+      - image: docker-registry.p-k2jbx-pipeline/myweb-2:latest
         name: myweb
 ---
 apiVersion: v1
