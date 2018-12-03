@@ -4,8 +4,7 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./dockerfile/Dockerfile
       buildContext: .
-      tag: myweb-1:latest
-      pushRemote: true
+      tag: myweb-2:latest
       registry: harbor.yuandingit.com
     env:
       PLUGIN_DEBUG: "true"
