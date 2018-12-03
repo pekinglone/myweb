@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-myweb
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  persistentVolumeReclaimPolicy: Recycle
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: /nfs/jenkins-repo/nfs-myweb
+    server: 192.168.50.123

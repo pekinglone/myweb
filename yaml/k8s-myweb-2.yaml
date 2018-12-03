@@ -1,0 +1,56 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: myweb-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: myweb
+  name: myweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: myweb
+  template:
+    metadata:
+      labels:
+        run: myweb
+    spec:
+      containers:
+      - image: nginx:1.7.9
+        name: myweb
+        volumeMounts:
+        - name: html
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: html
+        persistentVolumeClaim: 
+          claimName: myweb-pvc
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myweb-svc
+spec:
+  selector:
+    run: myweb
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+    nodePort: 30080
+  type: NodePort
+

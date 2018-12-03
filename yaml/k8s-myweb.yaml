@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: myweb
+  name: myweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: myweb
+  template:
+    metadata:
+      labels:
+        run: myweb
+    spec:
+      containers:
+      - image: harbor.yuandingit.com/cicd/$JOB_NAME:latest
+        name: myweb
+      imagePullSecrets:
+      - name: $KUBERNETES_SECRET_NAME
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myweb-svc
+spec:
+  selector:
+    run: myweb
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+    nodePort: 30081
+  type: NodePort
+
