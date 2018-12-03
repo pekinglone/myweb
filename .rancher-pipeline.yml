@@ -2,11 +2,13 @@ stages:
 - name: Build
   steps:
   - publishImageConfig:
-      dockerfilePath: ./dockerfile/
+      dockerfilePath: ./dockerfile/Dockerfile
       buildContext: .
       tag: ${CICD_GIT_REPO_NAME}/${CICD_GIT_REPO_NAME}:${CICD_EXECUTION_SEQUENCE}
       pushRemote: true
       registry: harbor.yuandingit.com
+    env:
+     PLUGIN_DEBUG: "true" 
 - name: Deploy
   steps:
   - applyYamlConfig:
