@@ -2,7 +2,7 @@ stages:
 - name: Build
   steps:
   - publishImageConfig:
-      dockerfilePath: ./dockerfile/Dockerfile
+      dockerfilePath: ./dockerfile/
       buildContext: .
       tag: ${CICD_GIT_REPO_NAME}/${CICD_GIT_REPO_NAME}:${CICD_EXECUTION_SEQUENCE}
       pushRemote: true
