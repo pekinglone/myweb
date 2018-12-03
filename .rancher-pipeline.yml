@@ -11,4 +11,4 @@ stages:
   steps:
   - applyYamlConfig:
       path: ./yaml/k8s-myweb.yaml
-timeout: 60
+timeout: 600
