@@ -6,9 +6,9 @@ stages:
       buildContext: .
       tag: ${CICD_GIT_REPO_NAME}/${CICD_GIT_REPO_NAME}:${CICD_EXECUTION_SEQUENCE}
       pushRemote: true
-      registry: harbor.yuandingit.com
+      registry: 127.0.0.1:34422
     env:
-     PLUGIN_DEBUG: "true" 
+      PLUGIN_DEBUG: "true"
 - name: Deploy
   steps:
   - applyYamlConfig:
